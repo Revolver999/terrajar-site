@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>TerraJar invite</title>
+<!-- The TerraJar invite link (spec B.13a). One link for every phone: Android goes to Google Play with the code as the
+     install referrer (the game redeems it by itself on first launch); iPhone gets the App Store link and the code to
+     type in; a computer sees both. The code is only ever shown as text. -->
+<style>
+  :root { --oat: #f6efe3; --cream: #fffaf1; --moss: #2f4a3a; --bark: #4a3b30; --sun: #f0b23c; --line: #e3d8c6; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --oat: #1f2420; --cream: #2a302b; --moss: #cfe3d3; --bark: #e9dccb; --line: #3a423b; }
+  }
+  :root[data-theme="dark"] { --oat: #1f2420; --cream: #2a302b; --moss: #cfe3d3; --bark: #e9dccb; --line: #3a423b; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--oat); color: var(--bark); font: 17px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 440px; margin: 0 auto; padding: 32px 16px 48px; }
+  h1 { color: var(--moss); font-size: 28px; margin: 0 0 8px; }
+  .card { background: var(--cream); border: 1px solid var(--line); border-radius: 20px; padding: 20px; margin-top: 18px; }
+  .code { font-size: 34px; font-weight: 800; letter-spacing: 6px; color: var(--moss); text-align: center; margin: 6px 0 12px; }
+  a.btn, button.btn { display: block; width: 100%; text-align: center; padding: 14px; border-radius: 999px; border: 0;
+    background: var(--sun); color: #3b302a; font: inherit; font-weight: 800; text-decoration: none; margin-top: 10px; cursor: pointer; }
+  button.btn.secondary { background: transparent; color: var(--moss); border: 2px solid var(--moss); }
+  .muted { font-size: 15px; opacity: .8; }
+  a { color: var(--moss); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Come and play TerraJar</h1>
+  <p>A cosy puzzle game: pour coloured sand until each jar holds one colour, and grow a little terrarium.</p>
+
+  <div class="card" id="codeCard" hidden>
+    <div class="muted">Your friend's invite code</div>
+    <div class="code" id="code"></div>
+    <button class="btn secondary" id="copy" type="button">Copy code</button>
+    <p class="muted" id="copied" hidden>Copied.</p>
+  </div>
+
+  <div class="card" id="android" hidden>
+    <strong>Android</strong>
+    <p class="muted" id="androidSteps">Install from Google Play and the code is added by itself when you first open the
+      game.</p>
+    <a class="btn" id="playLink" href="#">Get it on Google Play</a>
+  </div>
+
+  <div class="card" id="ios" hidden>
+    <strong>iPhone</strong>
+    <p class="muted" id="iosSteps">Install TerraJar, then in the game open Settings, Invite a friend, and type the code under
+      "Have a code?" (within 7 days of installing).</p>
+    <a class="btn" id="appStoreLink" href="#" hidden>Download on the App Store</a>
+    <p class="muted" id="iosSoon" hidden>Coming soon to the App Store.</p>
+  </div>
+
+  <p class="muted" style="margin-top:24px"><a href="../privacy/">Privacy policy</a></p>
+</main>
+<script>
+  // The App Store app id (the number in the app's App Store address), set once the app exists in App Store Connect.
+  var APP_STORE_ID = '';
+  var PACKAGE = 'com.terrajar.app';
+  var ALPHABET = /^[A-HJKMNP-Z2-9]{6}$/; // the game's code alphabet: no 0, O, 1, I or L
+
+  var raw = new URLSearchParams(location.search).get('c') || '';
+  var code = raw.trim().toUpperCase();
+  if (!ALPHABET.test(code)) code = '';
+
+  var ua = navigator.userAgent || '';
+  var isAndroid = /Android/i.test(ua);
+  var isIos = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+
+  var play = 'https://play.google.com/store/apps/details?id=' + PACKAGE +
+      (code ? '&referrer=' + encodeURIComponent('c=' + code) : '');
+  document.getElementById('playLink').href = play;
+  if (APP_STORE_ID) {
+    var ios = document.getElementById('appStoreLink');
+    ios.href = 'https://apps.apple.com/app/id' + APP_STORE_ID;
+    ios.hidden = false;
+  } else {
+    document.getElementById('iosSoon').hidden = false;
+  }
+
+  if (code) {
+    document.getElementById('code').textContent = code;
+    document.getElementById('codeCard').hidden = false;
+    document.getElementById('copy').addEventListener('click', function () {
+      var done = function () { document.getElementById('copied').hidden = false; };
+      if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, function () {});
+    });
+  } else {
+    document.getElementById('iosSteps').textContent = 'Install TerraJar from the App Store.';
+    document.getElementById('androidSteps').textContent = 'Install TerraJar from Google Play.';
+  }
+
+  document.getElementById('android').hidden = isIos;
+  document.getElementById('ios').hidden = isAndroid;
+  // On Android, go straight on to Google Play (the referrer carries the code); the button stays as a fallback.
+  if (isAndroid && code) location.replace(play);
+</script>
+</body>
+</html>
