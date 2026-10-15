@@ -27,7 +27,7 @@ You don't need an account to play, and we never ask for your name, email address
 | **A device and app integrity token** | Firebase App Check (Play Integrity on Android, App Attest on iPhone), when the game starts | To keep modified copies of the game out of the invite service | Google (Play Integrity) or Apple (App Attest) |
 | **The install referrer** (Android only): the text Google Play recorded when you opened an invite link, for example `c=ABC123` | Google Play Install Referrer | To redeem a friend's invite code automatically on first launch | Google Play. The game reads only the invite code in it. |
 
-The analytics events the game sends are: session start, level start, level win, level fail, continue offered, continue taken (with how: ad, free, Dew or booster), ad shown and ad reward earned (with which placement), purchase (with the product id), plant grown, critter petted, and event reward claimed. Each carries a level or plant id or a number. None carries your name, contacts, location or free text. The game sets no user id and no user properties for analytics.
+The analytics events the game sends are: session start, level start, level win, level fail, continue offered, continue taken (with how: ad, free or Dew), ad shown and ad reward earned (with which placement), purchase (with the product id), plant grown, critter petted, and event reward claimed. Each carries a level or plant id or a number. None carries your name, contacts, location or free text. The game sets no user id and no user properties for analytics.
 
 The game uses **local notifications** (reminders on your device if you allow them). They don't go through any server.
 
