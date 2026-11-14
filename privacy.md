@@ -5,7 +5,7 @@ permalink: /privacy/
 
 # TerraJar privacy policy
 
-**Last updated:** 15 October 2026
+**Last updated:** 14 November 2026
 
 TerraJar ("the game", "the app") is a puzzle game for iPhone and Android, made by Francesco Mascia ("we", "us"). You can reach us at terrajar.support@gmail.com.
 
@@ -22,6 +22,7 @@ You don't need an account to play, and we never ask for your name, email address
 | **Your consent choices** about ads and measurement | A consent form shown on first launch where the law requires one (Google's User Messaging Platform), and the iPhone tracking prompt | To respect your choice | Stored on your device by the consent SDK |
 | **Purchase records** (which products you bought, when, the store's transaction id) tied to an **anonymous app user id** that RevenueCat creates | The store and the purchase SDK | To deliver what you paid for, restore it on a new device, and keep records | RevenueCat ([RevenueCat privacy policy](https://www.revenuecat.com/privacy)), and Apple or Google, who process the payment. We never see your card details. |
 | **App usage events and an app-instance id** (see the list below), device and app basics (model, OS, language, country, app version) | Firebase Analytics | To see which levels are too hard or too easy, whether the game works, and what to fix next | Google Firebase ([Firebase privacy information](https://firebase.google.com/support/privacy)) |
+| **Crash reports**: the error and where it happened in the game, your device model, OS version, app version, and a Firebase installation id. No name, contacts, location or free text | Firebase Crashlytics, when the game crashes or hits an error | Only to find and fix crashes | Google Firebase |
 | **Remote configuration**: the game downloads a small settings file and sends the usual connection details (IP address, app and device basics) | Firebase Remote Config | To adjust game balance without a new release | Google Firebase |
 | **An anonymous Firebase id and invite records**: your invite code, the code you redeemed (if any), whether that friend reached level 5 and whether the reward was claimed | Firebase Authentication (anonymous, no login), created when the game starts; Cloud Firestore when you create, share or redeem a code, and when the game checks for invite rewards at launch | To make invite-a-friend work and stop one code from being used twice | Google Firebase |
 | **A device and app integrity token** | Firebase App Check (Play Integrity on Android, App Attest on iPhone), when the game starts | To keep modified copies of the game out of the invite service | Google (Play Integrity) or Apple (App Attest) |
@@ -45,6 +46,7 @@ On Android you can reset or delete your advertising ID in Settings, Privacy, Ads
 
 - **Game progress:** on your device until you delete the app or its data.
 - **Analytics:** Firebase keeps event data for 14 months (the retention we have set), then deletes it.
+- **Crash reports:** Firebase Crashlytics keeps them for 90 days, then deletes them.
 - **Purchase records:** as long as we need them for support, accounting and tax, and as long as RevenueCat and the stores keep them under their own policies.
 - **Invite records and the anonymous id:** until you ask us to delete them (see section 6).
 - **Ad data:** under Google's and the ad networks' own policies.
@@ -53,7 +55,7 @@ On Android you can reset or delete your advertising ID in Settings, Privacy, Ads
 
 We use these providers to run the game. Each handles data under its own terms and privacy policy:
 
-- Google AdMob and Google Firebase (Analytics, Remote Config, Authentication, Cloud Firestore, App Check, Play Integrity): <https://policies.google.com/privacy> and <https://firebase.google.com/support/privacy>
+- Google AdMob and Google Firebase (Analytics, Crashlytics, Remote Config, Authentication, Cloud Firestore, App Check, Play Integrity): <https://policies.google.com/privacy> and <https://firebase.google.com/support/privacy>
 - RevenueCat: <https://www.revenuecat.com/privacy>
 - Apple App Store and Google Play (payments, installs): <https://www.apple.com/legal/privacy/> and <https://policies.google.com/privacy>
 - The ad networks AdMob works with (Google's list shows which): <https://policies.google.com/technologies/partner-sites>
