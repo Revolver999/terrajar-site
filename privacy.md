@@ -29,7 +29,7 @@ You don't need an account to play, and we never ask for your name, email address
 | **The install referrer** (Android only): the text Google Play recorded when you opened an invite link, for example `c=ABC123` | Google Play Install Referrer | To redeem a friend's invite code automatically on first launch | Google Play. The game reads only the invite code in it. |
 
 The analytics events the game sends are: session start, level start, level win, level fail, continue offered, continue taken (with how: ad, free or Dew), ad shown and ad reward earned (with which placement), purchase (with the product id), plant grown, critter petted, and event reward claimed. Each carries a level or plant id or a number. None carries your name, contacts, location or free text. The game sets no user id and no user properties for analytics.
-
+The game also sends spending events: when the Shop is opened, when Dew is spent (and on which item), when an ad is offered and when it is watched, when an offer is shown and when it is taken, when a booster is used, and when you tap from the Journal to the Shop. Each carries only an item or placement id and a number, never your name, contacts, location or free text.
 The game uses **local notifications** (reminders on your device if you allow them). They don't go through any server.
 
 The game does **not** use your precise location, contacts, photos, microphone or camera, and does not sell personal data.
